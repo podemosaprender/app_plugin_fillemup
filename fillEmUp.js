@@ -31,6 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	var tabId= parseInt(window.location.hash.substring(1));
 	var b_cancel_el= document.getElementById("cancel");
 	var b_fill_el= document.getElementById("fill");
+	var b_extract_el= document.getElementById("extract");
 	var ta_el= document.getElementById("ta");
 	
 	b_cancel_el.onclick= () => window.close();
@@ -41,5 +42,11 @@ document.addEventListener("DOMContentLoaded", function () {
 				if (!error) { window.close(); }
 			})
 		}
+	};
+
+	b_extract_el.onclick= () => {
+		chrome.runtime.sendMessage({fill_get: true, id: tabId}, function (valores) {
+			ta_el.value= JSON.stringify(valores,null,1);
+		})
 	};
 });

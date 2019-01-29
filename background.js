@@ -37,4 +37,21 @@ chrome.runtime.onMessage.addListener( function(req,sender,sendResponse) {
 			sendResponse();
 		});
 	}
+	else if (req.fill_get && req.id) {
+		chrome.tabs.executeScript(req.id,{code:`
+			fe= document.activeElement;
+			while (fe.tagName!="BODY" && fe.tagName!="FORM") {
+				fe= fe.parentElement;
+			}	
+			valores= {};
+			fe.querySelectorAll("input").forEach(e => { valores[e.id || e.name]= e.value || "_completar_" });
+			fe.querySelectorAll("select").forEach(e => { valores[e.id || e.name]= e.value || "_completar_"});
+			valores
+		`},
+		function (valores) {
+			console.log("VALORES",valores[0]);
+			sendResponse(valores[0]);
+		});	
+		return true; //A: esperar la respuesta del callback
+	}
 });
