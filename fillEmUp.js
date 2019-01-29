@@ -12,6 +12,7 @@ async function get_from_url(opts) {
 }
 
 async function get_data(txt) {
+	console.log("get_data",txt);
 	var m;
 	if (m= txt.match(/^[\s\r\n]*(http\S+)/)) {
 		let res= await get_from_url({url: m[1]});
@@ -23,6 +24,9 @@ async function get_data(txt) {
 	}
 	else if (txt.match(/^[\s\r\n]*\{/)) {
 		return JSON.parse(txt);
+	}
+	else {
+		alert("ERROR FORMATO");
 	}
 }
 
