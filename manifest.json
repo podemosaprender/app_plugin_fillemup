@@ -1,0 +1,19 @@
+{
+  "name" : "Fill'em up",
+  "version" : "0.0.1",
+  "description" : "Fill forms with data from tables or json",
+  "background" : { "scripts": ["background.js"] },
+  "permissions" : [
+    "contextMenus",
+    "tabs",
+    "http://*/*",
+    "https://*/*"
+   ],
+  "minimum_chrome_version" : "6.0.0.0",
+  "icons" : {
+    "16" : "img/icon-16.png",
+    "48" : "img/icon-48.png",
+    "128" : "img/icon-128.png"
+  },
+  "manifest_version": 2
+}
